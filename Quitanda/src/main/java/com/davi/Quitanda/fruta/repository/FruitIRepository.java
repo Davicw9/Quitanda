@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * @author davia
  * @date 20/05/2025
@@ -22,4 +24,7 @@ public interface FruitIRepository extends JpaRepository<Fruit, Long> {
      */
     @Query("select f from Fruit f")
     Page<Fruit> findAllPageable(Pageable pageable);
+
+    Optional <Fruit> findById(Long id);
+    Optional <Fruit> findByName(String name);
 }

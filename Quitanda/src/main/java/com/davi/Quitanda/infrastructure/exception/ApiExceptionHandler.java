@@ -22,7 +22,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(InvalidRegistrationInformationException.class)
     public ResponseEntity<ErrorMessage> invalidRegistrationInformationException(RuntimeException ex, HttpServletRequest request) {
-       // log.error("Api Error - ", ex);
+       log.error("Api Error - ", ex);
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -32,7 +32,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(FruitAlreadyExistsException.class)
     public ResponseEntity<ErrorMessage> UserAlreadyExistsException(RuntimeException ex, HttpServletRequest request) {
-       // log.error("API Error - ", ex);
+       log.error("API Error - ", ex);
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -41,7 +41,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorMessage> entityNotFoundException(RuntimeException ex, HttpServletRequest request) {
-        //log.error("Api Error - ", ex);
+        log.error("Api Error - ", ex);
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .contentType(MediaType.APPLICATION_JSON)

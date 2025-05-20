@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FruitPostResponseDto {
+public class FruitPostRequestDto {
 
     @JsonProperty(value = "name")
     private String name;
