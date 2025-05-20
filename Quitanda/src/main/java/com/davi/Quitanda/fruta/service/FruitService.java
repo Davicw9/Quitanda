@@ -48,17 +48,29 @@ public class FruitService implements FruitIService{
 
     @Override
     public void delete(Long id) {
+        log.info("Deleting fruit with id: {}", id);
+        getFruitOrThrow(id);
 
+
+
+        fruitIRepository.deleteById(id);
     }
 
     @Override
-    public void update(long id) {
+    public Fruit update(Fruit fruit) {
+        log.info("updating fruit with id: {}", fruit.getId());
+        getFruitOrThrow(fruit.getId());
 
+        Optional<Fruit> fruitWithSameName = fruitIRepository.findByName(fruit.getName());
+        if (fruitWithSameName.isPresent() && !fruitWithSameName.get().getId().equals(fruit.getId())) {
+            throw new EntityExistsException("Fruit " + fruit.getName() + " already exists");
+        }
+        return fruitIRepository.save(fruit);
     }
 
     @Override
     public Page<Fruit> findAll(int page, int size) {
-        log.info("Fetching all users from page {} of size {}", page, size);
+        log.info("Fetching all fruits from page {} of size {}", page, size);
         if (page < 0 || size <= 0) {
             throw new IllegalArgumentException("Página e tamanho devem ser valores positivos");
         }

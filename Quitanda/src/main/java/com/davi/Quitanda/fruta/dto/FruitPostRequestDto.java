@@ -18,6 +18,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class FruitPostRequestDto {
 
+    @JsonProperty(value = "id")
+    private Long id;
+
     @JsonProperty(value = "name")
     private String name;
 

@@ -12,7 +12,7 @@ public interface FruitIService {
 
     void delete(Long id);
 
-    void update(long id);
+    Fruit update(Fruit fruit);
 
     Page<Fruit> findAll(int page, int size);
 }

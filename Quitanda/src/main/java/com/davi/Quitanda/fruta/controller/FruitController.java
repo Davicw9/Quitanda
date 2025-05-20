@@ -46,4 +46,19 @@ public class FruitController {
         Page<FruitGetResponseDto> fruitPageResponseDto = fruitPage.map(fruit -> objectMapperUtil.map(fruit, FruitGetResponseDto.class));
         return ResponseEntity.status(HttpStatus.OK).body(fruitPageResponseDto);
     }
+    @PutMapping(path = "/update/{id}", produces = "application/json")
+    public ResponseEntity<FruitGetResponseDto> update(@PathVariable Long id, @RequestBody FruitPostRequestDto fruitRequestDto){
+        Fruit fruit = objectMapperUtil.map(fruitRequestDto, Fruit.class);
+        Fruit updatedFruit = fruitService.update(fruit);
+
+        FruitGetResponseDto fruitResponseDto = objectMapperUtil.map(updatedFruit, FruitGetResponseDto.class);
+        return ResponseEntity.status(HttpStatus.OK).body(fruitResponseDto);
+    }
+
+    @DeleteMapping(path = "/delete/{id}", produces = "application/json")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        fruitService.delete(id);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
