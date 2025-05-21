@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -36,6 +37,7 @@ public class FruitService implements FruitIService{
     }
 
     @Override
+    @Transactional
     public Fruit save(Fruit fruit) {
         log.info("FruitService: save fruit {}", fruit.getName());
         Optional <Fruit> fruitOptionalName = fruitIRepository.findByName(fruit.getName());
@@ -48,6 +50,7 @@ public class FruitService implements FruitIService{
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         log.info("Deleting fruit with id: {}", id);
         getFruitOrThrow(id);
@@ -58,6 +61,7 @@ public class FruitService implements FruitIService{
     }
 
     @Override
+    @Transactional
     public Fruit update(Fruit fruit) {
         log.info("updating fruit with id: {}", fruit.getId());
         getFruitOrThrow(fruit.getId());
@@ -70,6 +74,7 @@ public class FruitService implements FruitIService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Fruit> findAll(int page, int size) {
         log.info("Fetching all fruits from page {} of size {}", page, size);
         if (page < 0 || size <= 0) {

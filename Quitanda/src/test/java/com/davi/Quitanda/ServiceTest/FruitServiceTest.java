@@ -157,4 +157,16 @@ class FruitServiceTest {
         assertThrows(IllegalArgumentException.class, () -> fruitService.findAll(-1, 10));
         assertThrows(IllegalArgumentException.class, () -> fruitService.findAll(0, 0));
     }
+
+    // Anotação do JUnit que indica que este é um método de teste
+    @Test
+    void shouldReturnTrueIfFruitListIsNotEmpty() {
+        // Criamos uma lista contendo um único objeto fruit (pode ser o mock ou um objeto de teste)
+        List<Fruit> fruits = List.of(fruit);
+
+        // Verificamos se a lista NÃO está vazia, ou seja, contém pelo menos uma fruta
+        // O assertTrue espera uma condição booleana verdadeira
+        assertTrue(!fruits.isEmpty(), "A lista de frutas não deveria estar vazia");
+    }
+
 }
