@@ -49,6 +49,7 @@ public class FruitController {
     @PutMapping(path = "/update/{id}", produces = "application/json")
     public ResponseEntity<FruitGetResponseDto> update(@PathVariable Long id, @RequestBody FruitPostRequestDto fruitRequestDto){
         Fruit fruit = objectMapperUtil.map(fruitRequestDto, Fruit.class);
+        fruit.setId(id);
         Fruit updatedFruit = fruitService.update(fruit);
 
         FruitGetResponseDto fruitResponseDto = objectMapperUtil.map(updatedFruit, FruitGetResponseDto.class);

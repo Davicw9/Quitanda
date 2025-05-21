@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -75,6 +76,6 @@ public class FruitService implements FruitIService{
             throw new IllegalArgumentException("Página e tamanho devem ser valores positivos");
         }
         Pageable pageable = PageRequest.of(page, size);
-        return fruitIRepository.findAllPageable(pageable);
+        return fruitIRepository.findAll(PageRequest.of(page, size, Sort.by("name").ascending()));
     }
 }
