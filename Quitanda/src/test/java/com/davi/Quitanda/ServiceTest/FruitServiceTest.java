@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.springframework.data.domain.*;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.*;
 
@@ -22,6 +23,7 @@ import static org.mockito.Mockito.*;
  */
 // Diz ao JUnit para usar a extensão do Mockito
 @ExtendWith(org.mockito.junit.jupiter.MockitoExtension.class)
+@ActiveProfiles("h2")
 class FruitServiceTest {
 
     // Cria um mock do repositório que será "fingido" no teste
